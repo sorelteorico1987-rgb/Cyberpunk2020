@@ -1,0 +1,22 @@
+digraph UML_Personajes {
+  graph [label="NEON 2020 - UML: personajes",labelloc=t,ranksep=0.8];
+  node [shape=record];
+  Personaje [label="{abstract Personaje|Nombre; Estadisticas; VidaActual; VidaMaxima|RecibirDanio(); Curar()}"];
+  Jugador [label="{abstract Jugador|Energia; Humanidad; Creditos; Inventario|UsarEspecial(); Habilidad()}"];
+  Enemigo [label="{abstract Enemigo|Defensa|Atacar(); Aturdir()}"];
+  Mercenario; Netrunner; Arreglador; GuardiaCorporativo; DronCentinela;
+  Objeto [label="{abstract Objeto|Nombre|Usar()}"];
+  Botiquin; Estimulante; Inventario; Estadisticas;
+  Jugador -> Personaje [arrowhead=empty];
+  Enemigo -> Personaje [arrowhead=empty];
+  Mercenario -> Jugador [arrowhead=empty];
+  Netrunner -> Jugador [arrowhead=empty];
+  Arreglador -> Jugador [arrowhead=empty];
+  GuardiaCorporativo -> Enemigo [arrowhead=empty];
+  DronCentinela -> Enemigo [arrowhead=empty];
+  Botiquin -> Objeto [arrowhead=empty];
+  Estimulante -> Objeto [arrowhead=empty];
+  Jugador -> Inventario [label="contiene"];
+  Personaje -> Estadisticas [label="contiene"];
+  Inventario -> Objeto [label="almacena"];
+}
