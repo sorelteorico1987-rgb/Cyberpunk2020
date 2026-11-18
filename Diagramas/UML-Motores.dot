@@ -1,0 +1,25 @@
+digraph UML_Motores {
+  graph [label="NEON 2020 - UML: motores y servicios",labelloc=t];
+  node [shape=record];
+  MotorJuego [label="{MotorJuego|EntradaConsola; MotorHistoria; GuardadoPartida|Ejecutar(); NuevaPartida(); Jugar()}"];
+  MotorHistoria [label="{MotorHistoria|MotorReglas; MotorCombate|Ejecutar(); CapituloUno(); CapituloDos(); CapituloTres(); CapituloCuatro()}"];
+  MotorCombate [label="{MotorCombate|MotorReglas; IDado|Combatir()}"];
+  MotorReglas [label="{MotorReglas|IDado|Resolver(4 argumentos); Resolver(5 argumentos)}"];
+  EntradaConsola [label="{EntradaConsola|TextReader|LeerOpcion(); LeerNombre()}"];
+  GuardadoPartida [label="{GuardadoPartida|Ruta|Guardar(); Cargar()}"];
+  EstadoJuego [label="{EstadoJuego|Jugador; Capitulo; Alerta; Reputacion|Avanzar(); CambiarAlerta()}"];
+  IDado [label="{interface IDado|Lanzar()}"];
+  DadoAleatorio; DadoFijo; PartidaDto;
+  MotorJuego -> MotorHistoria;
+  MotorJuego -> GuardadoPartida;
+  MotorJuego -> EntradaConsola;
+  MotorHistoria -> MotorCombate;
+  MotorHistoria -> MotorReglas;
+  MotorHistoria -> EstadoJuego;
+  MotorCombate -> MotorReglas;
+  MotorReglas -> IDado;
+  DadoAleatorio -> IDado [arrowhead=empty,style=dashed];
+  DadoFijo -> IDado [arrowhead=empty,style=dashed];
+  GuardadoPartida -> PartidaDto;
+  GuardadoPartida -> EstadoJuego;
+}
